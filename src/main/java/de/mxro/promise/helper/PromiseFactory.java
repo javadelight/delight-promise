@@ -4,6 +4,6 @@ import de.mxro.async.Operation;
 
 public interface PromiseFactory {
 
-    public <T> PromiseTemplate<T> promise(Operation<T> deferred);
+    public <T> P<T> promise(Operation<T> deferred);
 
 }

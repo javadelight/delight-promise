@@ -8,9 +8,9 @@ import de.mxro.async.Operation;
 import de.mxro.async.Value;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.fn.Closure;
-import de.mxro.promise.helper.PromiseTemplate;
+import de.mxro.promise.helper.P;
 
-public class PromiseImpl<ResultType> implements PromiseTemplate<ResultType> {
+public class PromiseImpl<ResultType> implements P<ResultType> {
 
     private final Operation<ResultType> asyncPromise;
 
