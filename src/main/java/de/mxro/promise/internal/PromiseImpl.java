@@ -8,7 +8,7 @@ import de.mxro.async.Operation;
 import de.mxro.async.Value;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.fn.Closure;
-import de.mxro.promise.helper.Promise;
+import de.mxro.promise.Promise;
 
 public class PromiseImpl<ResultType> implements Promise<ResultType> {
 

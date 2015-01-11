@@ -11,7 +11,7 @@ import de.mxro.async.Operation;
 import de.mxro.async.AsyncFunction;
 import de.mxro.async.callbacks.ListCallback;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.promise.helper.Promise;
+import de.mxro.promise.Promise;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.jre.internal.JrePromiseImpl;
 

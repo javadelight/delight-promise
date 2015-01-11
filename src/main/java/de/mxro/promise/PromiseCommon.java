@@ -1,7 +1,6 @@
 package de.mxro.promise;
 
 import de.mxro.async.Operation;
-import de.mxro.promise.helper.Promise;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.internal.PromiseImpl;
 

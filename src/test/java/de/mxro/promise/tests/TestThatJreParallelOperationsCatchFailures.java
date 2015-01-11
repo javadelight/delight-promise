@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.promise.helper.Promise;
+import de.mxro.promise.Promise;
 import de.mxro.promise.jre.Promises;
 
 public class TestThatJreParallelOperationsCatchFailures {

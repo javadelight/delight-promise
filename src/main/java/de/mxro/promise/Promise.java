@@ -1,4 +1,4 @@
-package de.mxro.promise.helper;
+package de.mxro.promise;
 
 import de.mxro.async.Operation;
 import de.mxro.fn.Closure;
