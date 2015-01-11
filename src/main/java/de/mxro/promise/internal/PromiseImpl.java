@@ -153,8 +153,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
 
     @Override
     public void get(final Closure<ResultType> closure) {
-        System.out.println("resolve closure " + closure);
-        new Exception("here").printStackTrace();
+
         requestResult(new ValueCallback<ResultType>() {
 
             @Override
