@@ -4,8 +4,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.internal.PromiseImpl;
 import de.mxro.async.promise.Deferred;
+import de.mxro.promise.PromiseImpl;
 
 public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
 
