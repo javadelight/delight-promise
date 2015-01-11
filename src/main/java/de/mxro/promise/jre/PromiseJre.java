@@ -17,10 +17,6 @@ import de.mxro.async.promise.PromiseFactory;
 
 public class PromiseJre {
 
-    public static <ResultType> ResultType get(final Deferred<ResultType> deferred) {
-        return new JrePromiseImpl<ResultType>(deferred).get();
-    }
-
     public static <T> List<Object> parallel(final List<Promise<T>> promises) {
         return parallel(promises.toArray(new Promise[0]));
     }
