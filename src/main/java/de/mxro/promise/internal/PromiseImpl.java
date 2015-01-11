@@ -12,6 +12,8 @@ import de.mxro.promise.Promise;
 
 public class PromiseImpl<ResultType> implements Promise<ResultType> {
 
+    private final static boolean ENABLE_LOG = true;
+
     private final Operation<ResultType> asyncPromise;
 
     private final List<ValueCallback<ResultType>> deferredCalls;
@@ -102,7 +104,9 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                     synchronized (resultCache) {
                         resultCache.set(value);
 
-                        // System.out.println("setting result " + resultCache);
+                        if (ENABLE_LOG) {
+                            System.out.println(this + ": Set result " + resultCache);
+                        }
 
                         synchronized (deferredCalls) {
                             cachedCalls = new ArrayList<ValueCallback<ResultType>>(deferredCalls);
