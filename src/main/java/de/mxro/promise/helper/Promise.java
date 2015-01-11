@@ -13,10 +13,30 @@ import de.mxro.fn.Closure;
  */
 public interface Promise<ResultType> extends Operation<ResultType> {
 
+    /**
+     * <p>
+     * Attempts to resolve this promise synchronously.
+     * 
+     * @return Result of the promise.
+     */
     public ResultType get();
 
+    /**
+     * <p>
+     * Register a listener of exceptions.
+     * 
+     * @param closure
+     *            Closure to be called if an exception occurs in resolving the
+     *            promise.
+     */
     public void catchExceptions(Closure<Throwable> closure);
 
+    /**
+     * <p>
+     * Attempts to resolve this promise asynchronously.
+     * 
+     * @param closure
+     */
     public void get(Closure<ResultType> closure);
 
 }
