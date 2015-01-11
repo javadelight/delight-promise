@@ -10,10 +10,10 @@ import de.mxro.async.Async;
 import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ListCallback;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.jre.internal.JrePromiseImpl;
 import de.mxro.async.promise.Deferred;
 import de.mxro.async.promise.Promise;
 import de.mxro.async.promise.PromiseFactory;
+import de.mxro.promise.jre.internal.JrePromiseImpl;
 
 public class PromiseJre {
 
