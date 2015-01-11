@@ -12,7 +12,7 @@ import de.mxro.promise.Promise;
 
 public class PromiseImpl<ResultType> implements Promise<ResultType> {
 
-    private final static boolean ENABLE_LOG = true;
+    private final static boolean ENABLE_LOG = false;
 
     private final Operation<ResultType> operation;
 
