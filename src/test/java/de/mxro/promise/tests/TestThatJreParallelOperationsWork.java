@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import de.mxro.async.Deferred;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.promise.Promise;
+import de.mxro.promise.helper.Promise;
 import de.mxro.promise.jre.PromiseJre;
 
 public class TestThatJreParallelOperationsWork {
@@ -40,7 +40,7 @@ public class TestThatJreParallelOperationsWork {
         final List<Promise<String>> promises = new ArrayList<Promise<String>>();
 
         for (int i = 1; i <= 50; i++) {
-            final Promise<String> p = PromiseJre.promise(new RandomlyDelayedPromise());
+            final Promise<String> p = PromiseJre.create(new RandomlyDelayedPromise());
             promises.add(p);
         }
 

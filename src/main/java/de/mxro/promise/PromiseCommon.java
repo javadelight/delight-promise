@@ -1,6 +1,8 @@
 package de.mxro.promise;
 
 import de.mxro.async.Deferred;
+import de.mxro.promise.helper.Promise;
+import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.internal.PromiseImpl;
 
 public class PromiseCommon {

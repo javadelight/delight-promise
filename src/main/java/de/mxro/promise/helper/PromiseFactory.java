@@ -1,4 +1,4 @@
-package de.mxro.promise;
+package de.mxro.promise.helper;
 
 import de.mxro.async.Deferred;
 
