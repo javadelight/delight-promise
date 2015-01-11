@@ -6,9 +6,9 @@ import java.util.Random;
 
 import org.junit.Test;
 
+import de.mxro.async.Deferred;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.promise.Deferred;
-import de.mxro.async.promise.Promise;
+import de.mxro.promise.Promise;
 import de.mxro.promise.jre.PromiseJre;
 
 public class TestThatJreParallelOperationsWork {

@@ -3,9 +3,9 @@ package de.mxro.promise.jre.internal;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import de.mxro.async.Deferred;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.promise.Deferred;
-import de.mxro.promise.PromiseImpl;
+import de.mxro.promise.internal.PromiseImpl;
 
 public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
 
