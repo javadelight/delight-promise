@@ -201,4 +201,10 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
 
     }
 
+    @Override
+    public String toString() {
+
+        return "[(" + operation + ") wrapped by (" + super.toString() + ")]";
+    }
+
 }
