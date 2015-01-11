@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.promise.helper.P;
-import de.mxro.promise.jre.Promise;
+import de.mxro.promise.helper.Promise;
+import de.mxro.promise.jre.Promises;
 
 public class TestThatJreParallelOperationsWork {
 
@@ -37,14 +37,14 @@ public class TestThatJreParallelOperationsWork {
     @Test
     public void test_it() {
 
-        final List<P<String>> promises = new ArrayList<P<String>>();
+        final List<Promise<String>> promises = new ArrayList<Promise<String>>();
 
         for (int i = 1; i <= 50; i++) {
-            final P<String> p = Promise.create(new RandomlyDelayedPromise());
+            final Promise<String> p = Promises.create(new RandomlyDelayedPromise());
             promises.add(p);
         }
 
-        Promise.parallel(promises);
+        Promises.parallel(promises);
 
     }
 }

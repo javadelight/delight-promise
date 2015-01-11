@@ -11,7 +11,7 @@ import de.mxro.fn.Closure;
  *
  * @param <ResultType>
  */
-public interface P<ResultType> extends Operation<ResultType> {
+public interface Promise<ResultType> extends Operation<ResultType> {
 
     public ResultType get();
 

@@ -11,30 +11,30 @@ import de.mxro.async.Operation;
 import de.mxro.async.AsyncFunction;
 import de.mxro.async.callbacks.ListCallback;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.promise.helper.P;
+import de.mxro.promise.helper.Promise;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.jre.internal.JrePromiseImpl;
 
-public class Promise {
+public class Promises {
 
-    public static <ResultType> P<ResultType> create(final Operation<ResultType> operation) {
+    public static <ResultType> Promise<ResultType> create(final Operation<ResultType> operation) {
         return new JrePromiseImpl<ResultType>(operation);
     }
 
-    public static <T> List<Object> parallel(final List<P<T>> promises) {
-        return parallel(promises.toArray(new P[0]));
+    public static <T> List<Object> parallel(final List<Promise<T>> promises) {
+        return parallel(promises.toArray(new Promise[0]));
     }
 
     @SuppressWarnings("rawtypes")
-    public static List<Object> parallel(final P... promises) {
+    public static List<Object> parallel(final Promise... promises) {
 
         final CountDownLatch latch = new CountDownLatch(1);
 
-        AsyncCommon.map(Arrays.asList(promises), new AsyncFunction<P, Object>() {
+        AsyncCommon.map(Arrays.asList(promises), new AsyncFunction<Promise, Object>() {
 
             @SuppressWarnings("unchecked")
             @Override
-            public void apply(final P input, final ValueCallback<Object> callback) {
+            public void apply(final Promise input, final ValueCallback<Object> callback) {
                 input.apply(new ValueCallback<Object>() {
 
                     @Override
@@ -73,7 +73,7 @@ public class Promise {
 
         final List<Object> res = new ArrayList<Object>(promises.length);
 
-        for (final P p : promises) {
+        for (final Promise p : promises) {
             res.add(p.get());
         }
 
@@ -85,20 +85,20 @@ public class Promise {
         return new PromiseFactory() {
 
             @Override
-            public <T> P<T> promise(final Operation<T> deferred) {
-                return Promise.create(deferred);
+            public <T> Promise<T> promise(final Operation<T> deferred) {
+                return Promises.create(deferred);
             }
         };
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static List<Object> parallel(final Operation... promises) {
-        final ArrayList<P> list = new ArrayList<P>(promises.length);
+        final ArrayList<Promise> list = new ArrayList<Promise>(promises.length);
         for (final Operation ap : promises) {
             list.add(create(ap));
         }
 
-        return parallel(list.toArray(new P[0]));
+        return parallel(list.toArray(new Promise[0]));
     }
 
 }
