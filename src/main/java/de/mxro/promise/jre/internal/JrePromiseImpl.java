@@ -14,9 +14,10 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
             throw new RuntimeException("Promise failed before.", this.failureCache.get());
         }
 
-        if (this.resultCache.get() != null) {
+        final ResultType cachedResult = getCachedResult();
+        if (cachedResult != null) {
 
-            return this.resultCache.get();
+            return cachedResult;
         }
 
         Async.waitFor(new Operation<ResultType>() {
@@ -31,7 +32,7 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
             throw new RuntimeException("Promise could not be resolved.", this.failureCache.get());
         }
 
-        return this.resultCache.get();
+        return getCachedResult();
     }
 
     public JrePromiseImpl(final Operation<ResultType> asyncPromise) {
