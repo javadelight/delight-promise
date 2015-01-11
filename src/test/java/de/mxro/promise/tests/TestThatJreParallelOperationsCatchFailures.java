@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.promise.helper.Promise;
+import de.mxro.promise.helper.PromiseTemplate;
 import de.mxro.promise.jre.PromiseJre;
 
 public class TestThatJreParallelOperationsCatchFailures {
@@ -40,10 +40,10 @@ public class TestThatJreParallelOperationsCatchFailures {
 
     @Test(expected = Exception.class)
     public void test_it() {
-        final List<Promise<String>> promises = new ArrayList<Promise<String>>();
+        final List<PromiseTemplate<String>> promises = new ArrayList<PromiseTemplate<String>>();
 
         for (int i = 1; i <= 50; i++) {
-            final Promise<String> p = PromiseJre.create(new RandomlyFailingPromise());
+            final PromiseTemplate<String> p = PromiseJre.create(new RandomlyFailingPromise());
             promises.add(p);
         }
 

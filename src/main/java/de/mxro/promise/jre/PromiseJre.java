@@ -11,30 +11,30 @@ import de.mxro.async.Operation;
 import de.mxro.async.AsyncFunction;
 import de.mxro.async.callbacks.ListCallback;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.promise.helper.Promise;
+import de.mxro.promise.helper.PromiseTemplate;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.jre.internal.JrePromiseImpl;
 
 public class PromiseJre {
 
-    public static <ResultType> Promise<ResultType> create(final Operation<ResultType> operation) {
+    public static <ResultType> PromiseTemplate<ResultType> create(final Operation<ResultType> operation) {
         return new JrePromiseImpl<ResultType>(operation);
     }
 
-    public static <T> List<Object> parallel(final List<Promise<T>> promises) {
-        return parallel(promises.toArray(new Promise[0]));
+    public static <T> List<Object> parallel(final List<PromiseTemplate<T>> promises) {
+        return parallel(promises.toArray(new PromiseTemplate[0]));
     }
 
     @SuppressWarnings("rawtypes")
-    public static List<Object> parallel(final Promise... promises) {
+    public static List<Object> parallel(final PromiseTemplate... promises) {
 
         final CountDownLatch latch = new CountDownLatch(1);
 
-        Async.map(Arrays.asList(promises), new AsyncFunction<Promise, Object>() {
+        Async.map(Arrays.asList(promises), new AsyncFunction<PromiseTemplate, Object>() {
 
             @SuppressWarnings("unchecked")
             @Override
-            public void apply(final Promise input, final ValueCallback<Object> callback) {
+            public void apply(final PromiseTemplate input, final ValueCallback<Object> callback) {
                 input.apply(new ValueCallback<Object>() {
 
                     @Override
@@ -73,7 +73,7 @@ public class PromiseJre {
 
         final List<Object> res = new ArrayList<Object>(promises.length);
 
-        for (final Promise p : promises) {
+        for (final PromiseTemplate p : promises) {
             res.add(p.get());
         }
 
@@ -85,7 +85,7 @@ public class PromiseJre {
         return new PromiseFactory() {
 
             @Override
-            public <T> Promise<T> promise(final Operation<T> deferred) {
+            public <T> PromiseTemplate<T> promise(final Operation<T> deferred) {
                 return PromiseJre.create(deferred);
             }
         };
@@ -93,12 +93,12 @@ public class PromiseJre {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static List<Object> parallel(final Operation... promises) {
-        final ArrayList<Promise> list = new ArrayList<Promise>(promises.length);
+        final ArrayList<PromiseTemplate> list = new ArrayList<PromiseTemplate>(promises.length);
         for (final Operation ap : promises) {
             list.add(create(ap));
         }
 
-        return parallel(list.toArray(new Promise[0]));
+        return parallel(list.toArray(new PromiseTemplate[0]));
     }
 
 }
