@@ -1,9 +1,9 @@
 package de.mxro.promise.helper;
 
-import de.mxro.async.Deferred;
+import de.mxro.async.Operation;
 import de.mxro.fn.Closure;
 
-public interface Promise<ResultType> extends Deferred<ResultType> {
+public interface Promise<ResultType> extends Operation<ResultType> {
 
     public ResultType get();
 

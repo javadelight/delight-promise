@@ -1,9 +1,9 @@
 package de.mxro.promise.helper;
 
-import de.mxro.async.Deferred;
+import de.mxro.async.Operation;
 
 public interface PromiseFactory {
 
-    public <T> Promise<T> promise(Deferred<T> deferred);
+    public <T> Promise<T> promise(Operation<T> deferred);
 
 }

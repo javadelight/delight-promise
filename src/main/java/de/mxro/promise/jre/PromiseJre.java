@@ -7,8 +7,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import de.mxro.async.Async;
-import de.mxro.async.Deferred;
 import de.mxro.async.Operation;
+import de.mxro.async.AsyncFunction;
 import de.mxro.async.callbacks.ListCallback;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.promise.helper.Promise;
@@ -17,7 +17,7 @@ import de.mxro.promise.jre.internal.JrePromiseImpl;
 
 public class PromiseJre {
 
-    public static <ResultType> Promise<ResultType> create(final Deferred<ResultType> operation) {
+    public static <ResultType> Promise<ResultType> create(final Operation<ResultType> operation) {
         return new JrePromiseImpl<ResultType>(operation);
     }
 
@@ -30,7 +30,7 @@ public class PromiseJre {
 
         final CountDownLatch latch = new CountDownLatch(1);
 
-        Async.map(Arrays.asList(promises), new Operation<Promise, Object>() {
+        Async.map(Arrays.asList(promises), new AsyncFunction<Promise, Object>() {
 
             @SuppressWarnings("unchecked")
             @Override
@@ -85,16 +85,16 @@ public class PromiseJre {
         return new PromiseFactory() {
 
             @Override
-            public <T> Promise<T> promise(final Deferred<T> deferred) {
+            public <T> Promise<T> promise(final Operation<T> deferred) {
                 return PromiseJre.create(deferred);
             }
         };
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static List<Object> parallel(final Deferred... promises) {
+    public static List<Object> parallel(final Operation... promises) {
         final ArrayList<Promise> list = new ArrayList<Promise>(promises.length);
-        for (final Deferred ap : promises) {
+        for (final Operation ap : promises) {
             list.add(create(ap));
         }
 
