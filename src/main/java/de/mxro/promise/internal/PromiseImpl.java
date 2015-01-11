@@ -80,6 +80,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                     synchronized (deferredCalls) {
                         cachedCalls = new ArrayList<ValueCallback<ResultType>>(deferredCalls);
                     }
+                    deferredCalls.clear();
                 }
 
                 for (final ValueCallback<ResultType> deferredCb : cachedCalls) {
@@ -101,6 +102,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                         synchronized (deferredCalls) {
                             cachedCalls = new ArrayList<ValueCallback<ResultType>>(deferredCalls);
                         }
+                        deferredCalls.clear();
                     }
 
                 }
