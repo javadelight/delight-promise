@@ -20,7 +20,7 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
 
 		final CountDownLatch latch = new CountDownLatch(1);
 
-		get(new ValueCallback<ResultType>() {
+		apply(new ValueCallback<ResultType>() {
 
 			@Override
 			public void onFailure(Throwable t) {

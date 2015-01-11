@@ -22,7 +22,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
     private final List<Closure<Throwable>> exceptionCatchers;
 
     @Override
-    public void get(final ValueCallback<ResultType> callback) {
+    public void apply(final ValueCallback<ResultType> callback) {
         requestResult(callback);
     }
 
@@ -69,7 +69,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
             return;
         }
 
-        asyncPromise.get(new ValueCallback<ResultType>() {
+        asyncPromise.apply(new ValueCallback<ResultType>() {
 
             @Override
             public void onFailure(final Throwable t) {

@@ -16,7 +16,7 @@ public class TestThatJreParallelOperationsCatchFailures {
     private final class RandomlyFailingPromise implements Deferred<String> {
 
         @Override
-        public void get(final ValueCallback<String> callback) {
+        public void apply(final ValueCallback<String> callback) {
 
             new Thread() {
 

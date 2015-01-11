@@ -35,7 +35,7 @@ public class PromiseJre {
             @SuppressWarnings("unchecked")
             @Override
             public void apply(final Promise input, final ValueCallback<Object> callback) {
-                input.get(new ValueCallback<Object>() {
+                input.apply(new ValueCallback<Object>() {
 
                     @Override
                     public void onFailure(final Throwable t) {
