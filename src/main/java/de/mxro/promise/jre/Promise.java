@@ -81,7 +81,7 @@ public class Promise {
 
     }
 
-    public static PromiseFactory promiseFactory() {
+    public static PromiseFactory factory() {
         return new PromiseFactory() {
 
             @Override
