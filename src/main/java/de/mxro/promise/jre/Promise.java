@@ -15,7 +15,7 @@ import de.mxro.promise.helper.PromiseTemplate;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.jre.internal.JrePromiseImpl;
 
-public class PromiseJre {
+public class Promise {
 
     public static <ResultType> PromiseTemplate<ResultType> create(final Operation<ResultType> operation) {
         return new JrePromiseImpl<ResultType>(operation);
@@ -86,7 +86,7 @@ public class PromiseJre {
 
             @Override
             public <T> PromiseTemplate<T> promise(final Operation<T> deferred) {
-                return PromiseJre.create(deferred);
+                return Promise.create(deferred);
             }
         };
     }
