@@ -35,8 +35,8 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
         return getCachedResult();
     }
 
-    public JrePromiseImpl(final Operation<ResultType> asyncPromise) {
-        super(asyncPromise);
+    public JrePromiseImpl(final Operation<ResultType> operation) {
+        super(operation);
     }
 
 }
