@@ -102,6 +102,8 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                     synchronized (resultCache) {
                         resultCache.set(value);
 
+                        System.out.println("setting result " + resultCache);
+
                         synchronized (deferredCalls) {
                             cachedCalls = new ArrayList<ValueCallback<ResultType>>(deferredCalls);
                         }
