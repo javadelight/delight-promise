@@ -15,6 +15,7 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
         }
 
         if (this.resultCache.get() != null) {
+
             return this.resultCache.get();
         }
 
