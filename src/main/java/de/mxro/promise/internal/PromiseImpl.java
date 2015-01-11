@@ -14,7 +14,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
 
     private final static boolean ENABLE_LOG = true;
 
-    private final Operation<ResultType> asyncPromise;
+    private final Operation<ResultType> operation;
 
     private final List<ValueCallback<ResultType>> deferredCalls;
 
@@ -78,7 +78,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
             return;
         }
 
-        asyncPromise.apply(new ValueCallback<ResultType>() {
+        operation.apply(new ValueCallback<ResultType>() {
 
             @Override
             public void onFailure(final Throwable t) {
@@ -112,7 +112,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                         resultCache.set(value);
 
                         if (ENABLE_LOG) {
-                            System.out.println(this + ": Set result " + resultCache);
+                            System.out.println(PromiseImpl.this + ": Set result " + resultCache);
                         }
 
                         synchronized (deferredCalls) {
@@ -190,9 +190,9 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
         });
     }
 
-    public PromiseImpl(final Operation<ResultType> asyncPromise) {
+    public PromiseImpl(final Operation<ResultType> operation) {
         super();
-        this.asyncPromise = asyncPromise;
+        this.operation = operation;
         this.deferredCalls = new LinkedList<ValueCallback<ResultType>>();
         this.resultCache = new Value<ResultType>(null);
         this.failureCache = new Value<Throwable>(null);
