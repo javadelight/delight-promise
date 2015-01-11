@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import de.mxro.async.Async;
+import de.mxro.async.AsyncCommon;
 import de.mxro.async.Operation;
 import de.mxro.async.AsyncFunction;
 import de.mxro.async.callbacks.ListCallback;
@@ -30,7 +30,7 @@ public class Promise {
 
         final CountDownLatch latch = new CountDownLatch(1);
 
-        Async.map(Arrays.asList(promises), new AsyncFunction<PromiseTemplate, Object>() {
+        AsyncCommon.map(Arrays.asList(promises), new AsyncFunction<PromiseTemplate, Object>() {
 
             @SuppressWarnings("unchecked")
             @Override
