@@ -18,7 +18,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
 
     private final List<ValueCallback<ResultType>> deferredCalls;
 
-    protected final Value<ResultType> resultCache;
+    private final Value<ResultType> resultCache;
     private final Value<Boolean> isRequesting;
     protected final Value<Throwable> failureCache;
     private final List<Closure<Throwable>> exceptionCatchers;
@@ -26,6 +26,13 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
     @Override
     public void apply(final ValueCallback<ResultType> callback) {
         requestResult(callback);
+    }
+
+    protected ResultType getCachedResult() {
+        if (ENABLE_LOG) {
+            System.out.println(this + ": Retrieving result " + resultCache.get());
+        }
+        return resultCache.get();
     }
 
     private final void requestResult(final ValueCallback<ResultType> callback) {
