@@ -16,9 +16,9 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
 
     private final List<ValueCallback<ResultType>> deferredCalls;
 
-    private final Value<ResultType> resultCache;
+    protected final Value<ResultType> resultCache;
     private final Value<Boolean> isRequesting;
-    private final Value<Throwable> failureCache;
+    protected final Value<Throwable> failureCache;
     private final List<Closure<Throwable>> exceptionCatchers;
 
     @Override
