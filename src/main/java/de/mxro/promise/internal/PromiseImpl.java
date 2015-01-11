@@ -95,7 +95,8 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                 final List<ValueCallback<ResultType>> cachedCalls;
                 synchronized (failureCache) {
 
-                    assert failureCache.get() == null : "Cached exception already set." + failureCache.get();
+                    assert failureCache.get() == null : "Cached exception already set for operation [" + asyncPromise
+                            + "]. Failure: " + failureCache.get();
                     synchronized (resultCache) {
                         resultCache.set(value);
 
