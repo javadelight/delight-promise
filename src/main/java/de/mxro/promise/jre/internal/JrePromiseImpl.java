@@ -10,10 +10,12 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
     @Override
     public ResultType get() {
 
-        final ResultType result = super.get();
+        if (this.failureCache.get() != null) {
+            throw new RuntimeException("Promise failed before.", this.failureCache.get());
+        }
 
-        if (result != null) {
-            return result;
+        if (this.resultCache.get() != null) {
+            return this.resultCache.get();
         }
 
         Async.waitFor(new Operation<ResultType>() {
@@ -24,7 +26,11 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
             }
         });
 
-        return get();
+        if (this.failureCache.get() != null) {
+            throw new RuntimeException("Promise could not be resolved.", this.failureCache.get());
+        }
+
+        return this.resultCache.get();
 
         /*
          * final CountDownLatch latch = new CountDownLatch(1);
