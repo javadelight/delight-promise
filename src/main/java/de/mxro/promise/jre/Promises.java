@@ -11,6 +11,7 @@ import de.mxro.async.AsyncFunction;
 import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ListCallback;
 import de.mxro.async.callbacks.ValueCallback;
+import de.mxro.async.jre.Async;
 import de.mxro.promise.Promise;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.jre.internal.JrePromiseImpl;
@@ -55,6 +56,11 @@ public class Promises {
      */
     @SuppressWarnings("rawtypes")
     public static List<Object> parallel(final Promise... promises) {
+
+
+        Async.waitFor(new Operation<List<Object>> {
+
+        });
 
         final CountDownLatch latch = new CountDownLatch(1);
 
