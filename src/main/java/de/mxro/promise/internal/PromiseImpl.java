@@ -208,4 +208,16 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
         return "[(" + operation + ") wrapped by (" + super.toString() + ")]";
     }
 
+    @Override
+    public Operation<ResultType> toOperation() {
+
+        return new Operation<ResultType>() {
+
+            @Override
+            public void apply(final ValueCallback<ResultType> callback) {
+                apply(callback);
+            }
+        };
+    }
+
 }
