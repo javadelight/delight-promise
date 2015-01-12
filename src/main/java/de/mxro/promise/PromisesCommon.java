@@ -1,6 +1,9 @@
 package de.mxro.promise;
 
+import java.util.List;
+
 import de.mxro.async.Operation;
+import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.internal.PromiseImpl;
 
@@ -12,6 +15,20 @@ import de.mxro.promise.internal.PromiseImpl;
  *
  */
 public class PromisesCommon {
+
+    public final static Operation<List<Object>> resolveOp(final Promise... promises) {
+
+        return new Operation<List<Object>>() {
+
+            @Override
+            public void apply(final ValueCallback<List<Object>> callback) {
+                for (final Promise promise : promises) {
+
+                }
+            }
+        };
+
+    }
 
     /**
      * <p>
