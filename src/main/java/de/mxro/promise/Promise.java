@@ -39,4 +39,15 @@ public interface Promise<ResultType> extends Operation<ResultType> {
      */
     public void get(Closure<ResultType> closure);
 
+    /**
+     * <p>
+     * If this promises has been resolved, the result obtained will be returned
+     * by this function.
+     * <p>
+     * Otherwise, returns <code>null</code>.
+     * 
+     * @return
+     */
+    public ResultType cachedResult();
+
 }
