@@ -14,8 +14,8 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
             throw new RuntimeException("Promise failed before.", this.failureCache.get());
         }
 
-        final ResultType cachedResult = getCachedResult();
-        System.out.println(this + " from cache " + cachedResult);
+        final ResultType cachedResult = cachedResult();
+
         if (cachedResult != null) {
 
             return cachedResult;
@@ -33,7 +33,7 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
             throw new RuntimeException("Promise could not be resolved.", this.failureCache.get());
         }
 
-        return getCachedResult();
+        return cachedResult();
     }
 
     public JrePromiseImpl(final Operation<ResultType> operation) {
