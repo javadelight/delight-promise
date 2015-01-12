@@ -184,7 +184,20 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                     exceptionCatcher.apply(t);
                 }
                 if (catchers.size() == 0) {
-                    throw new RuntimeException("No catchException defined for promise over [" + operation + "].", t);
+                    final ArrayList<Closure<Throwable>> fallbackCatchers;
+                    synchronized (exceptionFallbackCatchers) {
+                        fallbackCatchers = new ArrayList<Closure<Throwable>>(exceptionCatchers);
+                    }
+
+                    for (final Closure<Throwable> exceptionCatcher : fallbackCatchers) {
+                        exceptionCatcher.apply(t);
+                    }
+
+                    if (fallbackCatchers.size() == 0) {
+                        throw new RuntimeException(
+                                "No catchException or addExceptionFallback defined for promise over [" + operation
+                                        + "].", t);
+                    }
                 }
             }
 
