@@ -7,14 +7,20 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import de.mxro.async.AsyncCommon;
-import de.mxro.async.Operation;
 import de.mxro.async.AsyncFunction;
+import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ListCallback;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.promise.Promise;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.jre.internal.JrePromiseImpl;
 
+/**
+ * Create and resolve promises in a JSE/Android/OSGi environment.
+ * 
+ * @author <a href="http://www.mxro.de">Max Rohde</a>
+ *
+ */
 public class Promises {
 
     public static <ResultType> Promise<ResultType> create(final Operation<ResultType> operation) {
