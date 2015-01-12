@@ -28,6 +28,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
         requestResult(callback);
     }
 
+    @Override
     public ResultType cachedResult() {
         if (ENABLE_LOG) {
             System.out.println(this + ": Retrieving result " + resultCache.get());
