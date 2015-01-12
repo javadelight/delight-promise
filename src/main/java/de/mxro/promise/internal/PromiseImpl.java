@@ -186,7 +186,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                 if (catchers.size() == 0) {
                     final ArrayList<Closure<Throwable>> fallbackCatchers;
                     synchronized (exceptionFallbackCatchers) {
-                        fallbackCatchers = new ArrayList<Closure<Throwable>>(exceptionCatchers);
+                        fallbackCatchers = new ArrayList<Closure<Throwable>>(exceptionFallbackCatchers);
                     }
 
                     for (final Closure<Throwable> exceptionCatcher : fallbackCatchers) {
@@ -196,7 +196,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                     if (fallbackCatchers.size() == 0) {
                         throw new RuntimeException(
                                 "No catchException or addExceptionFallback defined for promise over [" + operation
-                                        + "].", t);
+                                + "].", t);
                     }
                 }
             }
