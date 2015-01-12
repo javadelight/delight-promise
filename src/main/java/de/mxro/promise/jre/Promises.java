@@ -34,10 +34,25 @@ public class Promises {
         return new JrePromiseImpl<ResultType>(operation);
     }
 
+    /**
+     * Resolves the provided promises in parallel.
+     * 
+     * @param promises
+     * @return
+     */
     public static <T> List<Object> parallel(final List<Promise<T>> promises) {
         return parallel(promises.toArray(new Promise[0]));
     }
 
+    /**
+     * <p>
+     * Resolves the provided promises in parallel.
+     * <p>
+     * Blocks the calling thread until all promises are resolved.
+     * 
+     * @param promises
+     * @return
+     */
     @SuppressWarnings("rawtypes")
     public static List<Object> parallel(final Promise... promises) {
 
@@ -94,16 +109,6 @@ public class Promises {
 
     }
 
-    public static PromiseFactory factory() {
-        return new PromiseFactory() {
-
-            @Override
-            public <T> Promise<T> promise(final Operation<T> deferred) {
-                return Promises.create(deferred);
-            }
-        };
-    }
-
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static List<Object> parallel(final Operation... promises) {
         final ArrayList<Promise> list = new ArrayList<Promise>(promises.length);
@@ -112,6 +117,16 @@ public class Promises {
         }
 
         return parallel(list.toArray(new Promise[0]));
+    }
+
+    public static PromiseFactory factory() {
+        return new PromiseFactory() {
+
+            @Override
+            public <T> Promise<T> promise(final Operation<T> deferred) {
+                return Promises.create(deferred);
+            }
+        };
     }
 
 }
