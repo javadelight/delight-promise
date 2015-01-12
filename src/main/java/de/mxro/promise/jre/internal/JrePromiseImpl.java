@@ -15,6 +15,7 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
         }
 
         final ResultType cachedResult = getCachedResult();
+        System.out.println(this + " from cache " + cachedResult);
         if (cachedResult != null) {
 
             return cachedResult;
