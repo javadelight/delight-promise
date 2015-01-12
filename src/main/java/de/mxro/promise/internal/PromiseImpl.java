@@ -22,6 +22,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
     private final Value<Boolean> isRequesting;
     protected final Value<Throwable> failureCache;
     private final List<Closure<Throwable>> exceptionCatchers;
+    private final List<Closure<Throwable>> exceptionFallbackCatchers;
 
     @Override
     public void apply(final ValueCallback<ResultType> callback) {
@@ -201,6 +202,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
         this.resultCache = new Value<ResultType>(null);
         this.failureCache = new Value<Throwable>(null);
         this.exceptionCatchers = new LinkedList<Closure<Throwable>>();
+        this.exceptionFallbackCatchers = new LinkedList<Closure<Throwable>>();
         this.isRequesting = new Value<Boolean>(false);
 
     }
@@ -209,6 +211,11 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
     public String toString() {
 
         return "[(" + operation + ") wrapped by (" + super.toString() + ")]";
+    }
+
+    @Override
+    public void addExceptionFallback(final Closure<Throwable> closure) {
+        this.exceptionFallbackCatchers.add(closure);
     }
 
 }
