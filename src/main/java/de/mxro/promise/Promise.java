@@ -50,4 +50,6 @@ public interface Promise<ResultType> extends Operation<ResultType> {
      */
     public ResultType cachedResult();
 
+    public Operation<ResultType> toOperation();
+
 }
