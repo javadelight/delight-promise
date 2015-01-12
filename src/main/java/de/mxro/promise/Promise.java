@@ -50,6 +50,12 @@ public interface Promise<ResultType> extends Operation<ResultType> {
      */
     public ResultType cachedResult();
 
+    /**
+     * <p>
+     * Converts this promise into an {@link Operation}.
+     * 
+     * @return
+     */
     public Operation<ResultType> toOperation();
 
 }
