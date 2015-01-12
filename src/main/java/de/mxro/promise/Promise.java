@@ -33,6 +33,15 @@ public interface Promise<ResultType> extends Operation<ResultType> {
 
     /**
      * <p>
+     * Registeres a listener for exceptions, which is triggered when no
+     * listeners have been defined using {@link #catchExceptions(Closure)}
+     * 
+     * @param closure
+     */
+    public void addExceptionFallback(Closure<Throwable> closure);
+
+    /**
+     * <p>
      * Attempts to resolve this promise asynchronously.
      * 
      * @param closure
