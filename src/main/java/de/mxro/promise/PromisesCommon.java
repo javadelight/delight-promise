@@ -4,9 +4,17 @@ import de.mxro.async.Operation;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.internal.PromiseImpl;
 
-public class PromiseCommon {
+public class PromisesCommon {
 
-    public final static <ResultType> Promise<ResultType> promise(final Operation<ResultType> promise) {
+    /**
+     * <p>
+     * A basic promise implementation which does not allow synchronous access
+     * via .get().
+     * 
+     * @param promise
+     * @return
+     */
+    public final static <ResultType> Promise<ResultType> createUnsafe(final Operation<ResultType> promise) {
         return new PromiseImpl<ResultType>(promise);
     }
 
@@ -15,7 +23,7 @@ public class PromiseCommon {
 
             @Override
             public <T> Promise<T> promise(final Operation<T> deferred) {
-                return PromiseCommon.promise(deferred);
+                return PromisesCommon.createUnsafe(deferred);
             }
         };
     }
