@@ -23,6 +23,13 @@ import de.mxro.promise.jre.internal.JrePromiseImpl;
  */
 public class Promises {
 
+    /**
+     * Creates a new promise.
+     * 
+     * @param operation
+     *            The operation executed when this promise is resolved.
+     * @return A new promise instance wrapping the provided operation.
+     */
     public static <ResultType> Promise<ResultType> create(final Operation<ResultType> operation) {
         return new JrePromiseImpl<ResultType>(operation);
     }
