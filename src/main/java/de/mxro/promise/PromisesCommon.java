@@ -4,6 +4,13 @@ import de.mxro.async.Operation;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.internal.PromiseImpl;
 
+/**
+ * <p>
+ * Promise operations which are portable across Java and JavaScript.
+ * 
+ * @author <a href="http://www.mxro.de">Max Rohde</a>
+ *
+ */
 public class PromisesCommon {
 
     /**
@@ -11,13 +18,20 @@ public class PromisesCommon {
      * A basic promise implementation which does not allow synchronous access
      * via .get().
      * 
-     * @param promise
-     * @return
+     * @param operation
+     *            The operation from which this promises should be built.
+     * @return A new promise wrapping the supplied operation.
      */
-    public final static <ResultType> Promise<ResultType> createUnsafe(final Operation<ResultType> promise) {
-        return new PromiseImpl<ResultType>(promise);
+    public final static <ResultType> Promise<ResultType> createUnsafe(final Operation<ResultType> operation) {
+        return new PromiseImpl<ResultType>(operation);
     }
 
+    /**
+     * <p>
+     * Creates a factory for unsafe promises.
+     * 
+     * @return A factory for unsafe promises.
+     */
     public static PromiseFactory promiseFactory() {
         return new PromiseFactory() {
 
