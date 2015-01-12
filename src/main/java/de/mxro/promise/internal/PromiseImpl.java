@@ -182,6 +182,9 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                 for (final Closure<Throwable> exceptionCatcher : catchers) {
                     exceptionCatcher.apply(t);
                 }
+                if (catchers.size() == 0) {
+                    throw new RuntimeException("No catchException defined for promise over [" + operation + "].", t);
+                }
             }
 
             @Override
