@@ -1,6 +1,9 @@
 package de.mxro.promise;
 
 import de.mxro.async.Operation;
+import de.mxro.factories.Configuration;
+import de.mxro.factories.Dependencies;
+import de.mxro.factories.Factory;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.internal.PromiseImpl;
 
@@ -32,13 +35,37 @@ public class PromisesCommon {
      * 
      * @return A factory for unsafe promises.
      */
-    public static PromiseFactory unsafePromiseFactory() {
+    protected static PromiseFactory unsafePromiseFactory() {
         return new PromiseFactory() {
 
             @Override
             public <T> Promise<T> promise(final Operation<T> deferred) {
                 return PromisesCommon.createUnsafe(deferred);
             }
+        };
+    }
+
+    /**
+     * <p>
+     * Creates a factory for unsafe promises.
+     * 
+     * @return A factory for unsafe promises.
+     */
+    public static Factory<?, ?, ?> createUnsafePromiseFactory() {
+        return new Factory<PromiseFactory, PromiseConfiguration, Dependencies>() {
+
+            @Override
+            public boolean canInstantiate(final Configuration conf) {
+
+                return conf instanceof PromiseConfiguration;
+            }
+
+            @Override
+            public PromiseFactory create(final PromiseConfiguration conf, final Dependencies dependencies) {
+
+                return PromisesCommon.unsafePromiseFactory();
+            }
+
         };
     }
 
