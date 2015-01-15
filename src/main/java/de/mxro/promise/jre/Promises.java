@@ -37,7 +37,7 @@ public class Promises {
         return new JrePromiseImpl<ResultType>(operation);
     }
 
-    public static PromiseFactory factory() {
+    public static PromiseFactory createDirectFactory() {
         return new PromiseFactory() {
 
             @Override
@@ -65,7 +65,7 @@ public class Promises {
             @Override
             public PromiseFactory create(final PromiseConfiguration conf, final Dependencies dependencies) {
 
-                return Promises.factory();
+                return Promises.createDirectFactory();
             }
 
         };
