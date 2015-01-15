@@ -35,7 +35,7 @@ public class PromisesCommon {
      * 
      * @return A factory for unsafe promises.
      */
-    protected static PromiseFactory unsafePromiseFactory() {
+    private static PromiseFactory createDirectUnsafePromiseFactory() {
         return new PromiseFactory() {
 
             @Override
@@ -63,7 +63,7 @@ public class PromisesCommon {
             @Override
             public PromiseFactory create(final PromiseConfiguration conf, final Dependencies dependencies) {
 
-                return PromisesCommon.unsafePromiseFactory();
+                return PromisesCommon.createDirectUnsafePromiseFactory();
             }
 
         };
