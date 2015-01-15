@@ -37,6 +37,14 @@ public class Promises {
         return new JrePromiseImpl<ResultType>(operation);
     }
 
+    /**
+     * <p>
+     * Creates a factory, which instantiates promieses directly instead of a
+     * factory for {@link PromiseFactor} as {@link #createPromiseFactory()}
+     * does.
+     * 
+     * @return
+     */
     public static PromiseFactory createDirectFactory() {
         return new PromiseFactory() {
 
@@ -53,7 +61,7 @@ public class Promises {
      * 
      * @return A factory for promises.
      */
-    public static Factory<?, ?, ?> createUnsafePromiseFactory() {
+    public static Factory<?, ?, ?> createPromiseFactory() {
         return new Factory<PromiseFactory, PromiseConfiguration, Dependencies>() {
 
             @Override
