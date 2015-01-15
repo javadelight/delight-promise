@@ -32,7 +32,7 @@ public class PromisesCommon {
      * 
      * @return A factory for unsafe promises.
      */
-    public static PromiseFactory promiseFactory() {
+    public static PromiseFactory unsafePromiseFactory() {
         return new PromiseFactory() {
 
             @Override
