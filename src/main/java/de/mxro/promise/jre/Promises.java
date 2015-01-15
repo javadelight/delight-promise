@@ -10,7 +10,11 @@ import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ListCallback;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.jre.Async;
+import de.mxro.factories.Configuration;
+import de.mxro.factories.Dependencies;
+import de.mxro.factories.Factory;
 import de.mxro.promise.Promise;
+import de.mxro.promise.PromiseConfiguration;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.jre.internal.JrePromiseImpl;
 
@@ -31,6 +35,40 @@ public class Promises {
      */
     public static <ResultType> Promise<ResultType> create(final Operation<ResultType> operation) {
         return new JrePromiseImpl<ResultType>(operation);
+    }
+
+    public static PromiseFactory factory() {
+        return new PromiseFactory() {
+
+            @Override
+            public <T> Promise<T> promise(final Operation<T> deferred) {
+                return Promises.create(deferred);
+            }
+        };
+    }
+
+    /**
+     * <p>
+     * Creates a factory for promises.
+     * 
+     * @return A factory for promises.
+     */
+    public static Factory<?, ?, ?> createUnsafePromiseFactory() {
+        return new Factory<PromiseFactory, PromiseConfiguration, Dependencies>() {
+
+            @Override
+            public boolean canInstantiate(final Configuration conf) {
+
+                return conf instanceof PromiseConfiguration;
+            }
+
+            @Override
+            public PromiseFactory create(final PromiseConfiguration conf, final Dependencies dependencies) {
+
+                return Promises.factory();
+            }
+
+        };
     }
 
     /**
@@ -103,16 +141,6 @@ public class Promises {
         }
 
         return parallel(list.toArray(new Promise[0]));
-    }
-
-    public static PromiseFactory factory() {
-        return new PromiseFactory() {
-
-            @Override
-            public <T> Promise<T> promise(final Operation<T> deferred) {
-                return Promises.create(deferred);
-            }
-        };
     }
 
 }
