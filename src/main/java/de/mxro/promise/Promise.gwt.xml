@@ -3,6 +3,7 @@
 <module rename-to='promise'>
 	
 	<inherits name='de.mxro.async.Async' /> 
+	<inherits name='de.mxro.factories.Factories' />
 	
 
 
