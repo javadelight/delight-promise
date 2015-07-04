@@ -1,7 +1,7 @@
 package de.mxro.promise;
 
-import de.mxro.async.Operation;
 import de.mxro.fn.Closure;
+import delight.async.Operation;
 
 /**
  * <p>

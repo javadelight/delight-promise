@@ -1,9 +1,9 @@
 package de.mxro.promise.jre.internal;
 
-import de.mxro.async.Operation;
-import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.jre.Async;
 import de.mxro.promise.internal.PromiseImpl;
+import delight.async.Operation;
+import delight.async.callbacks.ValueCallback;
+import delight.async.jre.Async;
 
 public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
 

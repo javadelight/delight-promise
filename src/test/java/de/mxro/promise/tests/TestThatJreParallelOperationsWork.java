@@ -6,10 +6,10 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import de.mxro.async.Operation;
-import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.promise.Promise;
 import de.mxro.promise.jre.Promises;
+import delight.async.Operation;
+import delight.async.callbacks.ValueCallback;
 
 public class TestThatJreParallelOperationsWork {
 
