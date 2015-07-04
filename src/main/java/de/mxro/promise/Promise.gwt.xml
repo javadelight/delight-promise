@@ -2,7 +2,7 @@
 <!-- Copyright 2011 Max Erik Rohde http://www.mxro.de All rights reserved. -->
 <module rename-to='promise'>
 	
-	<inherits name='de.mxro.async.Async' /> 
+	<inherits name='delight.async.Async' /> 
 	<inherits name='de.mxro.factories.Factories' />
 	
 
