@@ -1,4 +1,4 @@
-package de.mxro.promise;
+package delight.promise;
 
 import delight.async.Operation;
 import delight.functional.Closure;

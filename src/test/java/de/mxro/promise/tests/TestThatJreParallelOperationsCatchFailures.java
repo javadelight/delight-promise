@@ -2,15 +2,14 @@ package de.mxro.promise.tests;
 
 import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
+import delight.promise.Promise;
+import delight.promise.jre.Promises;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import org.junit.Test;
-
-import de.mxro.promise.Promise;
-import de.mxro.promise.jre.Promises;
 
 public class TestThatJreParallelOperationsCatchFailures {
 

@@ -1,4 +1,4 @@
-package de.mxro.promise;
+package delight.promise;
 
 import delight.factories.Configuration;
 

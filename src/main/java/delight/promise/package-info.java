@@ -4,4 +4,4 @@
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
  */
-package de.mxro.promise;
+package delight.promise;

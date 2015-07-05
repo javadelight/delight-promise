@@ -1,15 +1,14 @@
-package de.mxro.promise.internal;
+package delight.promise.internal;
 
 import delight.async.Operation;
 import delight.async.Value;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
+import delight.promise.Promise;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import de.mxro.promise.Promise;
 
 public class PromiseImpl<ResultType> implements Promise<ResultType> {
 

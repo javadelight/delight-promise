@@ -1,4 +1,4 @@
-package de.mxro.promise.jre;
+package delight.promise.jre;
 
 import delight.async.AsyncCommon;
 import delight.async.AsyncFunction;
@@ -9,15 +9,14 @@ import delight.async.jre.Async;
 import delight.factories.Configuration;
 import delight.factories.Dependencies;
 import delight.factories.Factory;
+import delight.promise.Promise;
+import delight.promise.PromiseConfiguration;
+import delight.promise.helper.PromiseFactory;
+import delight.promise.jre.internal.JrePromiseImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import de.mxro.promise.Promise;
-import de.mxro.promise.PromiseConfiguration;
-import de.mxro.promise.helper.PromiseFactory;
-import de.mxro.promise.jre.internal.JrePromiseImpl;
 
 /**
  * Create and resolve promises in a JSE/Android/OSGi environment.
