@@ -1,5 +1,8 @@
 package de.mxro.promise.tests;
 
+import delight.async.Operation;
+import delight.async.callbacks.ValueCallback;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,8 +11,6 @@ import org.junit.Test;
 
 import de.mxro.promise.Promise;
 import de.mxro.promise.jre.Promises;
-import delight.async.Operation;
-import delight.async.callbacks.ValueCallback;
 
 public class TestThatJreParallelOperationsWork {
 

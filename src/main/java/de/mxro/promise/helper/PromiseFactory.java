@@ -1,7 +1,8 @@
 package de.mxro.promise.helper;
 
-import de.mxro.promise.Promise;
 import delight.async.Operation;
+
+import de.mxro.promise.Promise;
 
 public interface PromiseFactory {
 

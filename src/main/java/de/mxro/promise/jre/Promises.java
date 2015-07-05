@@ -1,5 +1,12 @@
 package de.mxro.promise.jre;
 
+import delight.async.AsyncCommon;
+import delight.async.AsyncFunction;
+import delight.async.Operation;
+import delight.async.callbacks.ListCallback;
+import delight.async.callbacks.ValueCallback;
+import delight.async.jre.Async;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,12 +18,6 @@ import de.mxro.promise.Promise;
 import de.mxro.promise.PromiseConfiguration;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.jre.internal.JrePromiseImpl;
-import delight.async.AsyncCommon;
-import delight.async.AsyncFunction;
-import delight.async.Operation;
-import delight.async.callbacks.ListCallback;
-import delight.async.callbacks.ValueCallback;
-import delight.async.jre.Async;
 
 /**
  * Create and resolve promises in a JSE/Android/OSGi environment.
