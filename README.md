@@ -1,5 +1,9 @@
-[![Build Status](https://travis-ci.org/mxro/java-promise.svg)](https://travis-ci.org/mxro/java-promise)
+[![Build Status](https://travis-ci.org/javadelight/delight-promise.svg)](https://travis-ci.org/javadelight/delight-promise)
 
-# Java Promise
+# delight-promise
 
-Simple Promises for Java.
+A basic promise implementation for Java.
+
+Part of [Java Delight](https://github.com/javadelight/delight-main#java-delight-suite).
+
+[All Reports](http://modules.appjangle.com/delight-promise/latest/project-reports.html)
