@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.mxro.fn.Closure;
 import de.mxro.promise.Promise;
 import delight.async.Operation;
 import delight.async.Value;
 import delight.async.callbacks.ValueCallback;
+import delight.functional.Closure;
 
 public class PromiseImpl<ResultType> implements Promise<ResultType> {
 
