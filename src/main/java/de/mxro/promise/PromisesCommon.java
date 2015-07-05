@@ -1,10 +1,10 @@
 package de.mxro.promise;
 
 import delight.async.Operation;
+import delight.factories.Configuration;
+import delight.factories.Dependencies;
+import delight.factories.Factory;
 
-import de.mxro.factories.Configuration;
-import de.mxro.factories.Dependencies;
-import de.mxro.factories.Factory;
 import de.mxro.promise.helper.PromiseFactory;
 import de.mxro.promise.internal.PromiseImpl;
 

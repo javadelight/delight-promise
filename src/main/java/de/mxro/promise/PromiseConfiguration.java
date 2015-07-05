@@ -1,6 +1,6 @@
 package de.mxro.promise;
 
-import de.mxro.factories.Configuration;
+import delight.factories.Configuration;
 
 public class PromiseConfiguration implements Configuration {
 

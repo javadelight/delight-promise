@@ -6,14 +6,14 @@ import delight.async.Operation;
 import delight.async.callbacks.ListCallback;
 import delight.async.callbacks.ValueCallback;
 import delight.async.jre.Async;
+import delight.factories.Configuration;
+import delight.factories.Dependencies;
+import delight.factories.Factory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import de.mxro.factories.Configuration;
-import de.mxro.factories.Dependencies;
-import de.mxro.factories.Factory;
 import de.mxro.promise.Promise;
 import de.mxro.promise.PromiseConfiguration;
 import de.mxro.promise.helper.PromiseFactory;
