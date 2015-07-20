@@ -1,9 +1,6 @@
 package delight.promise.jre;
 
-import delight.async.AsyncCommon;
-import delight.async.AsyncFunction;
 import delight.async.Operation;
-import delight.async.callbacks.ListCallback;
 import delight.async.callbacks.ValueCallback;
 import delight.async.jre.Async;
 import delight.factories.Configuration;
@@ -11,11 +8,11 @@ import delight.factories.Dependencies;
 import delight.factories.Factory;
 import delight.promise.Promise;
 import delight.promise.PromiseConfiguration;
+import delight.promise.PromisesCommon;
 import delight.promise.helper.PromiseFactory;
 import delight.promise.jre.internal.JrePromiseImpl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -89,40 +86,6 @@ public class Promises {
         return parallel(promises.toArray(new Promise[0]));
     }
 
-    @SuppressWarnings("rawtypes")
-    public static void resolve(final ValueCallback<List<Object>> callback, final Promise... promises) {
-        AsyncCommon.map(Arrays.asList(promises), new AsyncFunction<Promise, Object>() {
-
-            @SuppressWarnings("unchecked")
-            @Override
-            public void apply(final Promise input, final ValueCallback<Object> callback) {
-                input.apply(new ValueCallback<Object>() {
-
-                    @Override
-                    public void onFailure(final Throwable t) {
-                        callback.onFailure(t);
-                    }
-
-                    @Override
-                    public void onSuccess(final Object value) {
-                        callback.onSuccess(value);
-                    }
-                });
-            }
-        }, new ListCallback<Object>() {
-
-            @Override
-            public void onSuccess(final List<Object> value) {
-                callback.onSuccess(value);
-            }
-
-            @Override
-            public void onFailure(final Throwable t) {
-                callback.onFailure(t);
-            }
-        });
-    }
-
     /**
      * <p>
      * Resolves the provided promises in parallel.
@@ -139,7 +102,7 @@ public class Promises {
 
             @Override
             public void apply(final ValueCallback<List<Object>> callback) {
-                resolve(callback, promises);
+                PromisesCommon.resolve(callback, promises);
             }
 
         });

@@ -1,11 +1,18 @@
 package delight.promise;
 
+import delight.async.AsyncCommon;
+import delight.async.AsyncFunction;
 import delight.async.Operation;
+import delight.async.callbacks.ListCallback;
+import delight.async.callbacks.ValueCallback;
 import delight.factories.Configuration;
 import delight.factories.Dependencies;
 import delight.factories.Factory;
 import delight.promise.helper.PromiseFactory;
 import delight.promise.internal.PromiseImpl;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>
@@ -67,6 +74,40 @@ public class PromisesCommon {
             }
 
         };
+    }
+
+    @SuppressWarnings("rawtypes")
+    public static void resolve(final ValueCallback<List<Object>> callback, final Promise... promises) {
+        AsyncCommon.map(Arrays.asList(promises), new AsyncFunction<Promise, Object>() {
+    
+            @SuppressWarnings("unchecked")
+            @Override
+            public void apply(final Promise input, final ValueCallback<Object> callback) {
+                input.apply(new ValueCallback<Object>() {
+    
+                    @Override
+                    public void onFailure(final Throwable t) {
+                        callback.onFailure(t);
+                    }
+    
+                    @Override
+                    public void onSuccess(final Object value) {
+                        callback.onSuccess(value);
+                    }
+                });
+            }
+        }, new ListCallback<Object>() {
+    
+            @Override
+            public void onSuccess(final List<Object> value) {
+                callback.onSuccess(value);
+            }
+    
+            @Override
+            public void onFailure(final Throwable t) {
+                callback.onFailure(t);
+            }
+        });
     }
 
 }
