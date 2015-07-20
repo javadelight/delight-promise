@@ -8,9 +8,12 @@ import delight.async.callbacks.ValueCallback;
 import delight.factories.Configuration;
 import delight.factories.Dependencies;
 import delight.factories.Factory;
+import delight.functional.Closure;
+import delight.functional.Pair;
 import delight.promise.helper.PromiseFactory;
 import delight.promise.internal.PromiseImpl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -79,17 +82,17 @@ public class PromisesCommon {
     @SuppressWarnings("rawtypes")
     public static void resolve(final ValueCallback<List<Object>> callback, final Promise... promises) {
         AsyncCommon.map(Arrays.asList(promises), new AsyncFunction<Promise, Object>() {
-    
+
             @SuppressWarnings("unchecked")
             @Override
             public void apply(final Promise input, final ValueCallback<Object> callback) {
                 input.apply(new ValueCallback<Object>() {
-    
+
                     @Override
                     public void onFailure(final Throwable t) {
                         callback.onFailure(t);
                     }
-    
+
                     @Override
                     public void onSuccess(final Object value) {
                         callback.onSuccess(value);
@@ -97,17 +100,34 @@ public class PromisesCommon {
                 });
             }
         }, new ListCallback<Object>() {
-    
+
             @Override
             public void onSuccess(final List<Object> value) {
                 callback.onSuccess(value);
             }
-    
+
             @Override
             public void onFailure(final Throwable t) {
                 callback.onFailure(t);
             }
         });
+    }
+
+    public static <R1, R2> void resolve(final Promise<R1> promise1, final Promise<R2> promise2,
+            final ValueCallback<Pair<R1, R2>> cb) {
+        final List<Object> list = new ArrayList<Object>(2);
+        list.add(promise1);
+        list.add(promise2);
+
+        resolve(AsyncCommon.embed(callback, new Closure<List<Object>>() {
+
+            @Override
+            public void apply(final List<Object> o) {
+                // TODO Auto-generated method stub
+
+            }
+        }), list);
+
     }
 
 }
