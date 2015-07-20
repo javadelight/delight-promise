@@ -128,6 +128,7 @@ public class PromisesCommon {
 
         resolve(AsyncCommon.embed(callback, new Closure<List<Object>>() {
 
+            @SuppressWarnings("unchecked")
             @Override
             public void apply(final List<Object> res) {
                 callback.onSuccess(new Pair<R1, R2>((R1) res.get(0), (R2) res.get(1)));
