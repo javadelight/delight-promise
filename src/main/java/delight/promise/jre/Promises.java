@@ -89,6 +89,40 @@ public class Promises {
         return parallel(promises.toArray(new Promise[0]));
     }
 
+    @SuppressWarnings("rawtypes")
+    public static void resolve(final ValueCallback<List<Object>> callback, final Promise... promises) {
+        AsyncCommon.map(Arrays.asList(promises), new AsyncFunction<Promise, Object>() {
+
+            @SuppressWarnings("unchecked")
+            @Override
+            public void apply(final Promise input, final ValueCallback<Object> callback) {
+                input.apply(new ValueCallback<Object>() {
+
+                    @Override
+                    public void onFailure(final Throwable t) {
+                        callback.onFailure(t);
+                    }
+
+                    @Override
+                    public void onSuccess(final Object value) {
+                        callback.onSuccess(value);
+                    }
+                });
+            }
+        }, new ListCallback<Object>() {
+
+            @Override
+            public void onSuccess(final List<Object> value) {
+                callback.onSuccess(value);
+            }
+
+            @Override
+            public void onFailure(final Throwable t) {
+                callback.onFailure(t);
+            }
+        });
+    }
+
     /**
      * <p>
      * Resolves the provided promises in parallel.
@@ -105,36 +139,7 @@ public class Promises {
 
             @Override
             public void apply(final ValueCallback<List<Object>> callback) {
-                AsyncCommon.map(Arrays.asList(promises), new AsyncFunction<Promise, Object>() {
-
-                    @SuppressWarnings("unchecked")
-                    @Override
-                    public void apply(final Promise input, final ValueCallback<Object> callback) {
-                        input.apply(new ValueCallback<Object>() {
-
-                            @Override
-                            public void onFailure(final Throwable t) {
-                                callback.onFailure(t);
-                            }
-
-                            @Override
-                            public void onSuccess(final Object value) {
-                                callback.onSuccess(value);
-                            }
-                        });
-                    }
-                }, new ListCallback<Object>() {
-
-                    @Override
-                    public void onSuccess(final List<Object> value) {
-                        callback.onSuccess(value);
-                    }
-
-                    @Override
-                    public void onFailure(final Throwable t) {
-                        callback.onFailure(t);
-                    }
-                });
+                resolve(callback, promises);
             }
 
         });
