@@ -82,11 +82,11 @@ public class PromisesCommon {
     @SuppressWarnings("rawtypes")
     public static void resolve(final ValueCallback<List<Object>> callback, final Promise... promises) {
         final List<Promise> promisesList = Arrays.asList(promises);
-        resolve(callback, promisesList);
+        resolveList(callback, promisesList);
     }
 
     @SuppressWarnings("rawtypes")
-    public static void resolve(final ValueCallback<List<Object>> callback, final List<Promise> promisesList) {
+    public static void resolveList(final ValueCallback<List<Object>> callback, final List<Promise> promisesList) {
         AsyncCommon.map(promisesList, new AsyncFunction<Promise, Object>() {
 
             @SuppressWarnings("unchecked")
@@ -125,14 +125,14 @@ public class PromisesCommon {
         list.add(promise1);
         list.add(promise2);
 
-        resolve(AsyncCommon.embed(callback, new Closure<List<Object>>() {
+        resolveList(AsyncCommon.embed(callback, new Closure<List<Object>>() {
 
             @Override
             public void apply(final List<Object> o) {
                 // TODO Auto-generated method stub
 
             }
-        }), list.toArray());
+        }), list);
 
     }
 
