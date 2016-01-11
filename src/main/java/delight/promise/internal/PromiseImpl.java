@@ -164,8 +164,6 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
     public void catchExceptions(final Closure<Throwable> closure) {
         assert this.resultCache.get() == null && this.failureCache.get() == null;
 
-        System.out.println("register exception listener.");
-
         synchronized (exceptionCatchers) {
             exceptionCatchers.add(closure);
         }
