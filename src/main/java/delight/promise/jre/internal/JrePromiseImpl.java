@@ -21,7 +21,7 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
             return cachedResult;
         }
 
-        Async.waitFor(new Operation<ResultType>() {
+        Async.waitFor(60000, new Operation<ResultType>() {
 
             @Override
             public void apply(final ValueCallback<ResultType> callback) {
