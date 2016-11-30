@@ -195,6 +195,7 @@
 									<link>http://modules.appjangle.com/async-api/latest/apidocs/</link>
 									<link>http://modules.appjangle.com/concurrency/latest/apidocs/</link>
 								</links>
+								<failOnError>false</failOnError>
 							</configuration>
 						</plugin>
 
