@@ -80,6 +80,10 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
             return;
         }
 
+        if (ENABLE_LOG) {
+            System.out.println(this + ": Trigger operation: " + operation);
+        }
+
         operation.apply(new ValueCallback<ResultType>() {
 
             @Override
@@ -103,6 +107,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
 
             @Override
             public void onSuccess(final ResultType value) {
+
                 final List<ValueCallback<ResultType>> cachedCalls;
                 synchronized (failureCache) {
 
@@ -127,6 +132,10 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
 
                 for (final ValueCallback<ResultType> deferredCb : cachedCalls) {
                     deferredCb.onSuccess(value);
+                }
+
+                if (ENABLE_LOG) {
+                    System.out.println(this + ": Successfully completed operation: " + operation);
                 }
 
                 callback.onSuccess(value);

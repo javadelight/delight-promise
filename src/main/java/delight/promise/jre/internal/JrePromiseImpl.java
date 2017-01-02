@@ -7,6 +7,8 @@ import delight.promise.internal.PromiseImpl;
 
 public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
 
+    private final boolean ENABLE_LOG = false;
+
     @Override
     public ResultType get() {
 
@@ -21,13 +23,22 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
             return cachedResult;
         }
 
+        if (ENABLE_LOG) {
+            System.out.println(this + ": Request result.");
+        }
+
         Async.waitFor(120000, new Operation<ResultType>() {
 
             @Override
             public void apply(final ValueCallback<ResultType> callback) {
+
                 JrePromiseImpl.this.apply(callback);
             }
         });
+
+        if (ENABLE_LOG) {
+            System.out.println(this + ": Obtained result.");
+        }
 
         if (this.failureCache.get() != null) {
             throw new RuntimeException("Promise could not be resolved.", this.failureCache.get());
