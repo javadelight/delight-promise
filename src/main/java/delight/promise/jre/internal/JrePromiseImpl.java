@@ -31,7 +31,6 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
 
             @Override
             public void apply(final ValueCallback<ResultType> callback) {
-
                 JrePromiseImpl.this.apply(callback);
             }
         });

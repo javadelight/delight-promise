@@ -5,6 +5,7 @@ import delight.async.Value;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import delight.promise.Promise;
+import delight.simplelog.Log;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -32,7 +33,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
     @Override
     public ResultType cachedResult() {
         if (ENABLE_LOG) {
-            System.out.println(this + ": Retrieving result " + resultCache.get());
+            Log.println(this, "Retrieving result " + resultCache.get());
         }
         return resultCache.get();
     }
@@ -81,7 +82,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
         }
 
         if (ENABLE_LOG) {
-            System.out.println(this + ": Trigger operation: " + operation);
+            Log.println(this, "Trigger operation: " + operation);
         }
 
         operation.apply(new ValueCallback<ResultType>() {
@@ -119,7 +120,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                         resultCache.set(value);
 
                         if (ENABLE_LOG) {
-                            System.out.println(PromiseImpl.this + ": Set result " + resultCache);
+                            Log.println(PromiseImpl.this, "Set result " + resultCache);
                         }
 
                         synchronized (deferredCalls) {
@@ -135,7 +136,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
                 }
 
                 if (ENABLE_LOG) {
-                    System.out.println(this + ": Successfully completed operation: " + operation);
+                    Log.println(this, ": Successfully completed operation: " + operation);
                 }
 
                 callback.onSuccess(value);
@@ -147,6 +148,19 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
     @Override
     public ResultType get() {
 
+        final ResultType cachedResult = cachedResult();
+        if (cachedResult != null) {
+            return cachedResult;
+        }
+
+        if (this.failureCache.get() != null) {
+            throw new RuntimeException("Promise has failed before", this.failureCache.get());
+        }
+
+        if (ENABLE_LOG) {
+            Log.println(this, "Request result.");
+        }
+
         get(new Closure<ResultType>() {
 
             @Override
@@ -155,17 +169,12 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
             }
         });
 
-        synchronized (this.failureCache) {
-            if (this.failureCache.get() != null) {
-                throw new RuntimeException(this.failureCache.get());
-            }
+        if (this.failureCache.get() != null) {
+            throw new RuntimeException(this.failureCache.get());
         }
 
-        ResultType resultCache2;
-        synchronized (this.resultCache) {
-            resultCache2 = this.resultCache.get();
+        final ResultType resultCache2 = cachedResult();
 
-        }
         return resultCache2;
     }
 
