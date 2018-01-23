@@ -7,7 +7,21 @@ import delight.promise.internal.PromiseImpl;
 
 public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
 
-    private final boolean ENABLE_LOG = false;
+    private final class WrappedOperation implements Operation<ResultType> {
+		@Override
+		public void apply(final ValueCallback<ResultType> callback) {
+		    JrePromiseImpl.this.apply(callback);
+		}
+
+		@Override
+		public String toString() {
+			return "WrappedOperation ["+JrePromiseImpl.this.operation+"]";
+		}
+		
+		
+	}
+
+	private final boolean ENABLE_LOG = false;
 
     @Override
     public ResultType get() {
@@ -27,13 +41,7 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
             System.out.println(this + ": Request result.");
         }
 
-        Async.waitFor(120000, new Operation<ResultType>() {
-
-            @Override
-            public void apply(final ValueCallback<ResultType> callback) {
-                JrePromiseImpl.this.apply(callback);
-            }
-        });
+        Async.waitFor(120000, new WrappedOperation());
 
         if (ENABLE_LOG) {
             System.out.println(this + ": Obtained result.");

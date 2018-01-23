@@ -15,7 +15,7 @@ public class PromiseImpl<ResultType> implements Promise<ResultType> {
 
     private final static boolean ENABLE_LOG = false;
 
-    private final Operation<ResultType> operation;
+    protected final Operation<ResultType> operation;
 
     private final List<ValueCallback<ResultType>> deferredCalls;
 
