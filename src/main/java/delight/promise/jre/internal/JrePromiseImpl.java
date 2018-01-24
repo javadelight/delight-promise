@@ -41,7 +41,8 @@ public class JrePromiseImpl<ResultType> extends PromiseImpl<ResultType> {
             System.out.println(this + ": Request result.");
         }
 
-        Async.waitFor(120000, new WrappedOperation());
+        
+        Async.waitFor(200000, new WrappedOperation());
 
         if (ENABLE_LOG) {
             System.out.println(this + ": Obtained result.");
