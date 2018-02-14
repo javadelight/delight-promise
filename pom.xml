@@ -368,7 +368,7 @@
 		<repository>
 			<id>bintray-javadelight-javadelight</id>
 			<name>javadelight-javadelight</name>
-			<url>https://api.bintray.com/maven/javadelight/javadelight/delight-concurrency/;publish=1</url>
+			<url>https://api.bintray.com/maven/javadelight/javadelight/delight-promise/;publish=1</url>
 		</repository>
 	</distributionManagement>
 	
