@@ -2,8 +2,8 @@
 	<groupId>org.javadelight</groupId>
 	<artifactId>delight-promise</artifactId>
 	<version>0.0.3</version>
-	<description>Simply a promise implementation for Java.</description>
-	<url>https://github.com/mxro/promise-java</url>
+	<description>A simple promise implementation for Java.</description>
+	<url>https://github.com/javadelight/delight-promise</url>
 	<properties>
 		<module.gwtVersion>2.8.2</module.gwtVersion>
 		<module.importedPackages>
@@ -78,6 +78,38 @@
 	<build>
 
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<failOnError>false</failOnError>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -307,12 +339,7 @@
 	</build>
 
 
-	<repositories>
-		<repository>
-			<id>Appjangle Releases</id>
-			<url>http://maven.appjangle.com/appjangle/releases</url>
-		</repository>
-	</repositories>
+	
 
 	<developers>
 		<developer>
@@ -336,5 +363,28 @@
 		<developerConnection>scm:git:git@github.com:javadelight/delight-promise.git
 		</developerConnection>
 	</scm>
+	
+	<distributionManagement>
+		<repository>
+			<id>bintray-javadelight-javadelight</id>
+			<name>javadelight-javadelight</name>
+			<url>https://api.bintray.com/maven/javadelight/javadelight/delight-concurrency/;publish=1</url>
+		</repository>
+	</distributionManagement>
+	
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+		<license>
+			<name>GPL</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+		</license>
+	</licenses>
 
 </project>
