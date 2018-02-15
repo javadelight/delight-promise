@@ -34,6 +34,21 @@ Resolving multiple promises in parallel:
 List<Success> res = Promises.parallel(p1, p2,  ...);
 ```
 
+## Maven Dependency
+
+```xml
+<dependency>
+    <groupId>org.javadelight</groupId>
+    <artifactId>delight-promise</artifactId>
+    <version>[insert latest version]</version>
+</dependency>
+```
+
+This artifact is available on [Maven Central](https://search.maven.org/#search%7Cga%7C1%7Cdelight-promise) and 
+[BinTray](https://bintray.com/javadelight/javadelight/delight-promise).
+
+[![Maven Central](https://img.shields.io/maven-central/v/org.javadelight/delight-promise.svg)](https://search.maven.org/#search%7Cga%7C1%7Cdelight-promise)
+
 ## Links
 
 Part of [Java Delight](https://github.com/javadelight/delight-main#java-delight-suite).
